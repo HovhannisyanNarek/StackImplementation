@@ -32,13 +32,24 @@ namespace StackImplementation
             }
         }
 
-      //  T IEnumerator<T>.Current => throw new NotImplementedException();
-
-        object IEnumerator.Current => throw new NotImplementedException();
+        object IEnumerator.Current
+        {
+            get
+            {
+                if (position == -1 || position >= array.Length)
+                {
+                    throw new InvalidOperationException();
+                }
+                else
+                {
+                    return array[position];
+                }
+            }
+        }
 
         public bool MoveNext()
         {
-            if (position < array.Length - 1)
+            if (position < array.Length)
             {
                 position++;
                 return true;

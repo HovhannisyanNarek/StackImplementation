@@ -38,18 +38,18 @@ namespace StackImplementation
             return x;
         }
 
-        internal void PrintQueue()
-        {
-            if (s1.Count() <= 0)
-            {
-                Console.WriteLine("Queue Underflow");
-                return;
-            }
-            else
-            {
-                Console.WriteLine("Items in the Queue are :");
-                s1.PrintStack();
-            }
-        }
+        //public void PrintQueue()
+        //{
+        //    if (s1.Count() <= 0)
+        //    {
+        //        Console.WriteLine("Queue Underflow");
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Items in the Queue are :");
+        //        s1.PrintStack();
+        //    }
+        //}
     }
 }
