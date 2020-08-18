@@ -25,7 +25,7 @@ namespace StackImplementation
                 throw new Exception("Size must be positiv number");
             }
             stack = new T[size];
-            top = -1;
+            top = 0;
         }
         public void Push(T data)
         {
@@ -67,7 +67,7 @@ namespace StackImplementation
 
         //public void PrintStack()
         //{
-        //    if (top < 0)
+        //    if (top == 0)
         //    {
         //        Console.WriteLine("Stack Underflow");
         //        return;

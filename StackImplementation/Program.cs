@@ -11,7 +11,8 @@ namespace StackImplementation
     {
         static void Main(string[] args)
         {
-            //  BasicStackTest();
+              //BasicStackTest();
+              
             // BinaryTreeTest();
         }
 
@@ -23,10 +24,10 @@ namespace StackImplementation
             stack.Push(20);
             stack.Push(30);
             stack.Push(40);
-            //stack.PrintStack();
+          //stack.PrintStack();
             stack.Peek();
             Console.WriteLine("Item popped from Stack : {0}", stack.Pop());
-            //stack.PrintStack();
+          //stack.PrintStack();
         }
 
 
