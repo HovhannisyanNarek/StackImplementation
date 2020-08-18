@@ -11,189 +11,101 @@ namespace StackImplementation
         public Node LeftNode { get; set; }
         public Node RightNode { get; set; }
         public int Data { get; set; }
+
+        public Node()
+        {
+
+        }
+        public Node(int data)
+        {
+            Data = data;
+
+        }
     }
     public class BinaryTree
     {
-        public Node Root { get; set; }
+        private Node root;
 
-        public bool Add(int value)
+        public BinaryTree()
         {
-            Node before = null;
+            root = null;
+        }
 
-            Node after = this.Root;
-
-            while (after != null)
+        public void Insert(int data)
+        {
+            if (root==null)
             {
-                before = after;
-
-                if (value < after.Data)
+                root = new Node(data);
+                return;
+            }
+            InsertRecursiv(root, new Node(data));
+        }
+        private void InsertRecursiv(Node root,Node newNode)
+        {
+            if (newNode.Data < root.Data)
+            {
+                if (root.LeftNode == null)
                 {
-                    after = after.LeftNode;
+                    root.LeftNode = newNode;
                 }
                 else
                 {
-                    if (value > after.Data)
-                    {
-                        after = after.RightNode;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    InsertRecursiv(root.LeftNode, newNode);
                 }
-            }
-
-            Node newNode = new Node();
-
-            newNode.Data = value;
-
-            if (this.Root == null)
-            {
-                this.Root = newNode;
             }
             else
             {
-                if (value < before.Data)
+                if(root.RightNode==null)
                 {
-                    before.LeftNode = newNode;
+                    root.RightNode = newNode;
                 }
                 else
                 {
-                    before.RightNode = newNode;
+                    InsertRecursiv(root.RightNode, newNode);
                 }
             }
-
-            return true;
+        }
+        public void DisplayTree()
+        {
+            TraverseInOrder(root);
         }
 
-        public Node Find(int value)
-        {
-            return this.Find(value, this.Root);
-        }
 
-        public void Remove(int value)
+        public void TraverseInOrder(Node root)
         {
-            this.Root = Remove(this.Root, value);
-        }
-
-        private Node Remove(Node parent, int key)
-        {
-            if (parent == null)
+            if (root != null)
             {
-                return parent;
-            }
+                TraverseInOrder(root.LeftNode);
 
-            if (key < parent.Data)
-            {
-                parent.LeftNode = Remove(parent.LeftNode, key);
-            }
-            else
-            if (key > parent.Data)
-            {
-                parent.RightNode = Remove(parent.RightNode, key);
-            }
+                Console.Write(root.Data + " ");
 
-
-            else
-            {
-                //1,0 child
-                if (parent.LeftNode == null)
-                {
-                    return parent.RightNode;
-                }
-                else
-                {
-                    if (parent.RightNode == null)
-                    {
-                        return parent.LeftNode;
-                    }
-                }
-                //2 child min value
-                parent.Data = MinValue(parent.RightNode);
-
-                parent.RightNode = Remove(parent.RightNode, parent.Data);
-            }
-
-            return parent;
-        }
-
-        private int MinValue(Node node)
-        {
-            int minv = node.Data;
-
-            while (node.LeftNode != null)
-            {
-                minv = node.LeftNode.Data;
-                node = node.LeftNode;
-            }
-
-            return minv;
-        }
-
-        private Node Find(int value, Node parent)
-        {
-            if (parent != null)
-            {
-                if (value == parent.Data)
-                {
-                    return parent;
-                }
-                if (value < parent.Data)
-                {
-                    return Find(value, parent.LeftNode);
-                }
-                else
-                {
-                    return Find(value, parent.RightNode);
-                }
-            }
-
-            return null;
-        }
-
-        public int GetTreeDepth()
-        {
-            return this.GetTreeDepth(this.Root);
-        }
-
-        private int GetTreeDepth(Node parent)
-        {
-            return parent == null ? 0 : Math.Max(GetTreeDepth(parent.LeftNode), GetTreeDepth(parent.RightNode)) + 1;
-        }
-
-        public void TraversePreOrder(Node parent)
-        {
-            if (parent != null)
-            {
-                Console.Write(parent.Data + " ");
-
-                TraversePreOrder(parent.LeftNode);
-
-                TraversePreOrder(parent.RightNode);
+                TraverseInOrder(root.RightNode);
             }
         }
 
-        public void TraverseInOrder(Node parent)
+        public void TraversePreOrder(Node root)
         {
-            if (parent != null)
+            if (root != null)
             {
-                TraverseInOrder(parent.LeftNode);
+                Console.Write(root.Data + " ");
 
-                Console.Write(parent.Data + " ");
+                TraversePreOrder(root.LeftNode);
 
-                TraverseInOrder(parent.RightNode);
+                TraversePreOrder(root.RightNode);
             }
         }
 
-        public void TraversePostOrder(Node parent)
+
+
+        public void TraversePostOrder(Node root)
         {
-            if (parent != null)
+            if (root != null)
             {
-                TraversePostOrder(parent.LeftNode);
+                TraversePostOrder(root.LeftNode);
 
-                TraversePostOrder(parent.RightNode);
+                TraversePostOrder(root.RightNode);
 
-                Console.Write(parent.Data + " ");
+                Console.Write(root.Data + " ");
             }
         }
     }

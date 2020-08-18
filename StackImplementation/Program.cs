@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,12 @@ namespace StackImplementation
     {
         static void Main(string[] args)
         {
-              //BasicStackTest();
-              
-            // BinaryTreeTest();
+            //BasicStackTest();
+
+             BinaryTreeTest();
+
+           
+
         }
 
         private static void BasicStackTest()
@@ -33,40 +37,15 @@ namespace StackImplementation
 
         private static void BinaryTreeTest()
         {
-            BinaryTree binaryTree = new BinaryTree();
+            BinaryTree tree = new BinaryTree();
+            Node root = new Node();
 
-            binaryTree.Add(0);
-            binaryTree.Add(1);
-            binaryTree.Add(3);
-            binaryTree.Add(4);
-            binaryTree.Add(2);
-            binaryTree.Add(5);
-            binaryTree.Add(6);
-
-
-            Node node = binaryTree.Find(5);
-            int depth = binaryTree.GetTreeDepth();
-
-            Console.WriteLine("PreOrder Traversal:");
-            binaryTree.TraversePreOrder(binaryTree.Root);
-            Console.WriteLine();
-
-            Console.WriteLine("InOrder Traversal:");
-            binaryTree.TraverseInOrder(binaryTree.Root);
-            Console.WriteLine();
-
-            Console.WriteLine("PostOrder Traversal:");
-            binaryTree.TraversePostOrder(binaryTree.Root);
-            Console.WriteLine();
-
-            binaryTree.Remove(7);
-            binaryTree.Remove(8);
-
-            Console.WriteLine("PreOrder Traversal After Removing Operation:");
-            binaryTree.TraversePreOrder(binaryTree.Root);
-            Console.WriteLine();
-
-            Console.ReadLine();
+            tree.Insert(4);
+            tree.Insert(2);
+            tree.Insert(5);
+            tree.Insert(1);
+            tree.Insert(3);
+            tree.DisplayTree();
         }
     }
 }
